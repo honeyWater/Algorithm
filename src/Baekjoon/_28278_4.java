@@ -1,0 +1,36 @@
+package Baekjoon;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Stack;
+
+public class _28278_4 {
+    static StringBuilder sb = new StringBuilder();
+    static Stack<Integer> stack = new Stack<>();
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine()); // 명령어의 수
+
+        while(N-- > 0){
+            solution(br.readLine());
+        }
+
+        br.close();
+        System.out.println(sb);
+    }
+
+    static void solution(String input){
+        char c = input.charAt(0);
+
+        switch (c){
+            //case 1의 경우 query.substring(2);를 한 이유는 공백도 문자로 포함하기 때문이다 1 X 형태이기 때문에 X의인덱스는 2다.
+            case '1' : stack.push(Integer.parseInt(input.substring(2))); return;
+            case '2' : sb.append(stack.isEmpty() ? -1 : stack.pop()).append("\n"); return;
+            case '3' : sb.append(stack.size()).append("\n"); return;
+            case '4' : sb.append(stack.isEmpty() ? 1 : 0).append("\n"); return;
+            case '5' : sb.append(stack.isEmpty() ? -1 : stack.peek()).append("\n"); return;
+            default: break;
+        }
+    }
+}
