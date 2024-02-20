@@ -2,9 +2,11 @@ package Baekjoon;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.StringTokenizer;
 
-public class _14425_1 {
+public class P14425_문자열집합_2 {
     public static void main(String[] args) throws Exception {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -12,19 +14,18 @@ public class _14425_1 {
 
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
-        String[] S = new String[N];
         int ans = 0;
 
+        Set<String> set = new HashSet<>();
+
+        // N만큼의 문자열 저장
         for (int i = 0; i < N; i++) {
-            S[i] = br.readLine();
+            set.add(br.readLine());
         }
 
+        // 뒤의 M개의 문자열과 set을 비교
         for (int i = 0; i < M; i++) {
-            String check = br.readLine();
-
-            for (int j = 0; j < N; j++) {
-                if (S[j].equals(check)) ans++;
-            }
+            ans = set.contains(br.readLine()) ? ans + 1 : ans;
         }
 
         System.out.println(ans);

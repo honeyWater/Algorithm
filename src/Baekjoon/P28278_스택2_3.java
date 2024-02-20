@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class _28278_3 {
+public class P28278_스택2_3 {
 
     static StringBuilder sb = new StringBuilder();
     static Stack<Integer> stack = new Stack<>();

@@ -4,25 +4,24 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class _7785_2 {
+public class P7785_회사에있는사람_1 {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
 
-        HashMap<String, String> map = new HashMap<>();
+        ArrayList<String> list = new ArrayList<>();
         StringTokenizer st;
 
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine(), " ");
             String name = st.nextToken();
 
-            if (map.containsKey(name))
-                map.remove(name);
+            if (st.nextToken().equals("enter"))
+                list.add(name);
             else
-                map.put(name, st.nextToken());
+                list.remove(name);
         }
 
-        ArrayList<String> list = new ArrayList<>(map.keySet());
         list.sort(Collections.reverseOrder());
 
         for (String l : list) {

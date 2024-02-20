@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Stack;
 
-public class _28278_4 {
+public class P28278_스택2_4 {
     static StringBuilder sb = new StringBuilder();
     static Stack<Integer> stack = new Stack<>();
 

@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
-public class _10816_1 {
+public class P10816_숫자카드2_1 {
 
     static String num;
 
