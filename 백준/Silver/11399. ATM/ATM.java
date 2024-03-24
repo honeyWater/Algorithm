@@ -15,14 +15,15 @@ public class Main {
         for (int i = 0; i < n; i++) {
             pi[i] = Integer.parseInt(st.nextToken());
         }
+
         Arrays.sort(pi);
 
-        for (int i = 0; i < n; i++) {
-            int sum = 0;
-            for (int j = 0; j <= i; j++) {
-                sum += pi[j];
-            }
-            total += sum;
+        int[] sum = new int[n];
+        sum[0] = pi[0];
+        total += pi[0];
+        for (int i = 1; i < n; i++) {
+            sum[i] = sum[i - 1] + pi[i];
+            total += sum[i];
         }
 
         System.out.println(total);
