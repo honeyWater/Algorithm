@@ -1,7 +1,6 @@
 class Solution {
     public long solution(int n) {
         long[] answer = new long[n + 2];
-        answer[0] = 0;
         answer[1] = 1;
         answer[2] = 2;
         
