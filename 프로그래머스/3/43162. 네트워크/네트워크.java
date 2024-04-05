@@ -1,15 +1,15 @@
 import java.util.*;
 
 class Solution {
-    Queue<Integer> q = new LinkedList<>();
-    static boolean[] visited;
+    static Queue<Integer> q = new LinkedList<>();
+    static boolean[] visit;
     
     public int solution(int n, int[][] computers) {
-        visited = new boolean[n];
+        visit = new boolean[n];
         int answer = 0;
         
         for(int i=0; i<n; i++){
-            if(visited[i] == false){
+            if(visit[i] == false){
                 bfs(i, computers, n);
                 answer++;
             }
@@ -20,15 +20,15 @@ class Solution {
     
     public void bfs(int i, int[][] computers, int n){
         q.offer(i);
-        visited[i] = true;
+        visit[i] = true;
         
         while(!q.isEmpty()){
-            int x = q.poll();
+            int x = q.remove();
             
             for(int nx=0; nx<n; nx++){
-                if(visited[nx] == false && computers[x][nx] == 1){
-                    visited[nx] = true;
-                    q.offer(nx);
+                if(visit[nx] == false && computers[x][nx] == 1){
+                    visit[nx] = true;
+                    q.add(nx);
                 }
             }
         }
