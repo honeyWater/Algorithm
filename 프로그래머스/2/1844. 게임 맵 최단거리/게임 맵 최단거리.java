@@ -1,8 +1,8 @@
 import java.util.*;
 
 class Solution {
-    static int[] dx = {0, 0, -1, 1};
-    static int[] dy = {1, -1, 0, 0};
+    int[] dx = {0, 0, -1, 1};
+    int[] dy = {1, -1, 0, 0};
     
     public int solution(int[][] maps) {
         int answer = 0;
@@ -18,11 +18,9 @@ class Solution {
     }
     
     public void bfs(int[][] maps, int[][] visited){
-        int x = 0;
-        int y = 0;
-        visited[x][y] = 1;
+        visited[0][0] = 1;
         Queue<int[]> q = new LinkedList<>();
-        q.add(new int[]{x, y});
+        q.add(new int[]{0, 0});
         
         while(!q.isEmpty()){
             int[] current = q.remove();
