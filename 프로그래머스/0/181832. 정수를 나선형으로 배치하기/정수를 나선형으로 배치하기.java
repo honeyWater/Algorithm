@@ -1,44 +1,25 @@
 class Solution {
     public int[][] solution(int n) {
         int[][] answer = new int[n][n];
-        int direction = 0;  // 시계방향 : 0,1,2,3 - 우,하,좌,상
+        int[] dx = {0, 1, 0, -1};
+        int[] dy = {1, 0, -1, 0};
+        int x = 0, y = 0;
         int value = 1;      // 넣을 값
-        int row = 0;
-        int col = 0;
+        int direction = 0;  // 방향
 
         while (value <= n * n) {
-            answer[row][col] = value++;
+            answer[x][y] = value++;
 
-            // 현재 위치에 따른 방향 전환
-            if (direction == 0) {           // 오른쪽으로 이동
-                if (col == n - 1 || answer[row][col + 1] != 0) {
-                    direction = 1;
-                    row++;
-                } else {
-                    col++;
-                }
-            } else if (direction == 1) {    // 아래쪽으로 이동
-                if (row == n - 1 || answer[row + 1][col] != 0) {
-                    direction = 2;
-                    col--;
-                } else {
-                    row++;
-                }
-            } else if (direction == 2) {    // 왼쪽으로 이동
-                if (col == 0 || answer[row][col - 1] != 0) {
-                    direction = 3;
-                    row--;
-                } else {
-                    col--;
-                }
-            } else if (direction == 3) {    // 위쪽으로 이동
-                if (row == 0 || answer[row - 1][col] != 0) {
-                    direction = 0;
-                    col++;
-                } else {
-                    row--;
-                }
+            int nx = x + dx[direction];
+            int ny = y + dy[direction];
+
+            if (nx < 0 || nx >= n || ny < 0 || ny >= n || answer[nx][ny] != 0) {
+                direction = (direction + 1) % 4;
+                nx = x + dx[direction];
+                ny = y + dy[direction];
             }
+            x = nx;
+            y = ny;
         }
 
         return answer;
