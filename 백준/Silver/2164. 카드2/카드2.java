@@ -3,18 +3,18 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Queue<Integer> q = new LinkedList<>();
+        List<Integer> list = new LinkedList<>();
         int n = sc.nextInt();
 
         for (int i = 1; i <= n; i++) {
-            q.add(i);
+            list.add(i);
         }
 
-        while (q.size() != 1) {
-            q.poll();
-            q.offer(q.poll());
+        while (list.size() > 1) {
+            list.remove(0);
+            list.add(list.remove(0));
         }
 
-        System.out.println(q.poll());
+        System.out.println(list.remove(0));
     }
 }
