@@ -6,28 +6,27 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int an = Integer.parseInt(st.nextToken());
-        int bn = Integer.parseInt(st.nextToken());
-
         Set<Integer> diffSetA = new HashSet<>();
-        Set<Integer> diffSetB = new HashSet<>();
 
-        st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < an; i++) {
-            diffSetA.add(Integer.parseInt(st.nextToken()));
+        // 사이즈 입력 스킵
+        br.readLine();
+
+        // A요소 초기화
+        for (String s : br.readLine().split(" ")) {
+            diffSetA.add(Integer.parseInt(s));
         }
 
-        st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < bn; i++) {
-            int num = Integer.parseInt(st.nextToken());
+        // A요소가 B요소와 겹치면 제거, 안겹치면 B요소 수 증가
+        int diffB = 0;
+        for (String s : br.readLine().split(" ")){
+            int num = Integer.parseInt(s);
             if (diffSetA.contains(num)) {
                 diffSetA.remove(num);
             } else {
-                diffSetB.add(num);
+                diffB++;
             }
         }
 
-        System.out.println(diffSetA.size() + diffSetB.size());
+        System.out.println(diffSetA.size() + diffB);
     }
 }
