@@ -2,8 +2,7 @@ class Solution {
     public String solution(String s, String skip, int index) {
         StringBuilder answer = new StringBuilder();
         
-        for(char ch : s.toCharArray()){
-            char temp = ch;
+        for(char temp : s.toCharArray()){
             int idx = 0;
             
             // idx가 index가 될때까지 반복
