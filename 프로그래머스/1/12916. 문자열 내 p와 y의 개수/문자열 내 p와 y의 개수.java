@@ -1,14 +1,14 @@
 class Solution {
     boolean solution(String s) {
-        int cntP = 0, cntY = 0;
+        int count = 0;
         
-        for(int i = 0; i < s.length(); i++){
-            char ch = s.charAt(i);
+        for(int i=0; i<s.length(); i++){
+            char c = s.charAt(i);
             
-            if(ch == 'p' || ch == 'P') cntP++;
-            else if(ch == 'y' || ch == 'Y') cntY++;
+            if(c == 'p' || c == 'P') count++;
+            else if(c == 'y' || c == 'Y') count--;
         }
 
-        return cntP == cntY ? true : false;
+        return count == 0 ? true : false;
     }
 }
