@@ -2,9 +2,8 @@ import java.util.*;
 
 class Solution {
     public int solution(int[] numbers) {
-        Integer[] numArr = Arrays.stream(numbers).boxed().toArray(Integer[]::new);
-        Arrays.sort(numArr, Collections.reverseOrder());
+        Arrays.sort(numbers);
         
-        return numArr[0] * numArr[1];
+        return numbers[numbers.length - 1] * numbers[numbers.length - 2];
     }
 }
