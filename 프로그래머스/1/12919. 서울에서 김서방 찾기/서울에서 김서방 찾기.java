@@ -9,6 +9,6 @@ class Solution {
             }
         }
         
-        return answer + "에 있다";
+        return answer.append("에 있다").toString();
     }
 }
