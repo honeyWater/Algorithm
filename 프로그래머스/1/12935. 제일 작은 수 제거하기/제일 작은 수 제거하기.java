@@ -1,15 +1,13 @@
 import java.util.*;
 
 class Solution {
-    public ArrayList<Integer> solution(int[] arr) {
-        ArrayList<Integer> list = new ArrayList<>();
+    public int[] solution(int[] arr) {
         if (arr.length == 1){
-            list.add(-1);
-            return list;
+            return new int[]{-1};
         }
         
         int min = Arrays.stream(arr).min().getAsInt();
-        
+        ArrayList<Integer> list = new ArrayList<>();
         
         for (int num : arr){
             if (num != min){
@@ -17,6 +15,11 @@ class Solution {
             }
         }
         
-        return list;
+        int[] answer = new int[list.size()];
+        for (int i = 0; i < list.size(); i++){
+            answer[i] = list.get(i);
+        }
+        
+        return answer;
     }
 }
