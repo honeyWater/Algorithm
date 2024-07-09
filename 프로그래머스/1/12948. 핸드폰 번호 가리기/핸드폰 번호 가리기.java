@@ -4,6 +4,7 @@ class Solution {
         int frontLength = phone_number.length() - 4;
         String backString = phone_number.substring(frontLength);
 
+        // sb.append("*".repeat(frontLength)); 이렇게도 가능 !
         for (int i = 0; i < frontLength; i++) {
             sb.append("*");
         }
