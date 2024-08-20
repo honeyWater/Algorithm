@@ -19,3 +19,5 @@ class Solution {
         return sb.toString();
     }
 }
+// 주어진 문자열이 소문자만 주어진다는 보장 X
+// 왜 7점이나 주지;
