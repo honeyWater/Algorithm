@@ -1,11 +1,13 @@
 class Solution {
     public int[] solution(String s) {
-        int[] answer = new int[s.length()];
+        int len = s.length();
+        int[] answer = new int[len];
         int[] alphaPos = new int[26];
         
-        for(int i = 0; i < 26; i++) alphaPos[i] = -1;
+        for(int i = 0; i < 26; i++)
+            alphaPos[i] = -1;
         
-        for(int i = 0; i < s.length(); i++){
+        for(int i = 0; i < len; i++){
             int pos = s.charAt(i) - 97;
             
             if(alphaPos[pos] == -1){
