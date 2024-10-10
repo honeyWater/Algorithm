@@ -1,5 +1,6 @@
 import java.util.*;
 
+// 풀이 생각이 안나서 찾아봤었음..
 class Solution {
     public String[] solution(String[] strings, int n) {
         String[] answer = new String[strings.length];
