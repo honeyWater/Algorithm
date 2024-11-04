@@ -2,6 +2,7 @@ class Solution {
     public String solution(String s, String skip, int index) {
         StringBuilder answer = new StringBuilder();
         
+        // 문자열 s에서 꺼낸 문자를 다시 사용할 일 없으므로 바로 temp로 사용해도 가능
         for(char temp : s.toCharArray()){
             int idx = 0;
             
