@@ -25,7 +25,7 @@ class Solution {
                     num[n - 1] = 2 * num[n - 1];
                     break;
                 default:
-                    if (isDigit(dartResult.charAt(i + 1))) {
+                    if (isDigit(dartResult.charAt(i + 1))) { // 다음 문자가 숫자이면 10임을 의미함
                         num[n++] = 10;
                         i++;
                     } else {
