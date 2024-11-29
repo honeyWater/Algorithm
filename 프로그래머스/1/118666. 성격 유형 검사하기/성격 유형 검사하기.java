@@ -25,16 +25,10 @@ class Solution {
         }
 
         for (int i = 0; i < 8; i += 2) {
-            if (scores[i] > scores[i + 1]) {
+            if (scores[i] >= scores[i + 1]) {
                 answer += element[i];
             } else if (scores[i] < scores[i + 1]) {
                 answer += element[i + 1];
-            } else {
-                if (element[i] < element[i + 1]) {
-                    answer += element[i];
-                } else {
-                    answer += element[i + 1];
-                }
             }
         }
 
