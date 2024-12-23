@@ -10,7 +10,7 @@ class Solution {
         opStart = Integer.parseInt(op_start.substring(0, 2)) * 60 + Integer.parseInt(op_start.substring(3, 5));
         opEnd = Integer.parseInt(op_end.substring(0, 2)) * 60 + Integer.parseInt(op_end.substring(3, 5));
         
-        if (now >= opStart && now <= opEnd) {
+        if (inOpening(now)) {
             now = opEnd;
         }
         
@@ -47,9 +47,23 @@ class Solution {
             }
         }
         
-        String minute = String.format("%2s", String.valueOf(now/60)).replace(" ", "0");
-        String second = String.format("%2s", String.valueOf(now%60)).replace(" ", "0");
-        return minute + ":" + second;
+        StringBuilder sb = new StringBuilder();
+        int minute = now / 60;
+        int second = now % 60;
+        
+        if (minute < 10) {
+            sb.append(0).append(minute);
+        } else {
+            sb.append(minute);
+        }
+        sb.append(":");
+        if (second < 10) {
+            sb.append(0).append(second);
+        } else {
+            sb.append(second);
+        }
+        
+        return sb.toString();
     }
     
     // 현재 재생 위치가 오프닝 구간인지 확인
