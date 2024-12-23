@@ -13,6 +13,7 @@ class Solution {
                 if (park[i].charAt(j) == 'S') {
                     cr = i;
                     cc = j;
+                    break;
                 }
             }
         }
