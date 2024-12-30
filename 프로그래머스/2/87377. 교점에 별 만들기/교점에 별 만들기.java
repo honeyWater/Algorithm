@@ -1,8 +1,18 @@
 import java.util.*;
 
+/*
+1. 주어직 수식을 이용해 정수인 교점을 구한다.
+    (이 때, A, B, C는 -100,000~100,000 이므로 곱연산 시 int형 범위를 넘어가므로 long 사용)
+2. 구한 교점 중 최소 사각형으로 반환해야 하므로 x,y 각각의 최소, 최대값을 구한다.
+3. 최대, 최소값을 이용해 '*'을 알맞은 위치에 배치되도록
+*/
+
 class Solution {
     
-    private static class Point {
+    private static long minX = Long.MAX_VALUE, minY = Long.MAX_VALUE;
+    private static long maxX = Long.MIN_VALUE, maxY = Long.MIN_VALUE;
+    
+    private class Point {
         public final long x, y;
         
         private Point (long x, long y) {
@@ -11,79 +21,49 @@ class Solution {
         }
     }
     
-    // 정수인 교점 좌표 구하기
-    private Point getIntersection (long a1, long b1, long c1, long a2, long b2, long c2) {
-        double x = (double) (b1 * c2 - c1 * b2) / (a1 * b2 - b1 * a2);
-        double y = (double) (c1 * a2 - a1 * c2) / (a1 * b2 - b1 * a2);
-        
-        // 정수가 아니라면 무효
-        if (x % 1 != 0 || y % 1 != 0) return null;
-        
-        return new Point((long) x, (long) y);
-    }
-    
-    // x, y 각각의 최솟값 구하기
-    private Point getMinimum (List<Point> points) {
-        long x = Long.MAX_VALUE;
-        long y = Long.MAX_VALUE;
-        
-        for (Point p : points) {
-            if (p.x < x) x = p.x;
-            if (p.y < y) y = p.y;
-        }
-        
-        return new Point(x, y);
-    }
-    
-    // x, y 각각의 최댓값 구하기
-    private Point getMaximum (List<Point> points) {
-        long x = Long.MIN_VALUE;
-        long y = Long.MIN_VALUE;
-        
-        for (Point p : points) {
-            if (p.x > x) x = p.x;
-            if (p.y > y) y = p.y;
-        }
-        
-        return new Point(x, y);
-    }
-    
     public String[] solution(int[][] line) {
-        List<Point> points = new ArrayList<>();
+        Set<Point> points = new HashSet<>();
         
+        // 정수인 교점과 각 좌표 중 x, y의 최대 최솟값 구하기
         for (int i = 0; i < line.length; i++) {
             for (int j = i + 1; j < line.length; j++) {
-                Point xy = getIntersection(
-                    line[i][0], line[i][1], line[i][2],
-                    line[j][0], line[j][1], line[j][2]
-                );
+                long a = line[i][0], b = line[i][1], e = line[i][2];
+                long c = line[j][0], d = line[j][1], f = line[j][2];
                 
-                if (xy != null) {
-                    points.add(xy);
-                }
+                long adbc = a * d - b * c;
+                if (adbc == 0) continue; // 평행 혹은 일치
+                
+                long bfed = b * f - e * d;
+                if (bfed % adbc != 0) continue; // x != 정수
+                
+                long ecaf = e * c - a * f;
+                if (ecaf % adbc != 0) continue; // y != 정수
+                
+                long x = bfed / adbc;
+                long y = ecaf / adbc;
+                points.add(new Point(x, y));
+                
+                minX = Math.min(minX, x);
+                minY = Math.min(minY, y);
+                maxX = Math.max(maxX, x);
+                maxY = Math.max(maxY, y);
             }
         }
         
-        Point minPoint = getMinimum(points);
-        Point maxPoint = getMaximum(points);
+        int height = (int) (maxY - minY + 1);
+        int width = (int) (maxX - minX + 1);
         
-        int width = (int) (maxPoint.x - minPoint.x + 1);
-        int height = (int) (maxPoint.y - minPoint.y + 1);
-        
-        char[][] arr = new char[height][width];
-        for (char[] row : arr) {
-            Arrays.fill(row, '.');
+        String[] answer = new String[height];
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < width; i++) {
+            sb.append(".");
         }
+        Arrays.fill(answer, sb.toString());
         
         for (Point p : points) {
-            int x = (int) (p.x - minPoint.x);
-            int y = (int) (maxPoint.y - p.y);
-            arr[y][x] = '*';
-        }
-        
-        String[] answer = new String[arr.length];
-        for (int i = 0; i < answer.length; i++) {
-            answer[i] = new String(arr[i]);
+            int y = (int) (maxY - p.y);
+            int x = (int) (p.x - minX);
+            answer[y] = answer[y].substring(0, x) + "*" + answer[y].substring(x+1);
         }
         
         return answer;
