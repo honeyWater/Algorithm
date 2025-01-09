@@ -1,11 +1,13 @@
 class Solution {
     public int[] solution(long n) {
-        String s = n + "";
-        int len = s.length();
-        int[] answer = new int[len];
+        String str = String.valueOf(n);
+        String[] strArr = str.split("");
         
-        for(int i=0; i<len; i++){
-            answer[len - 1 - i] = s.charAt(i) - '0';
+        int strLen = str.length();
+        int[] answer = new int[strLen];
+        
+        for (int i = 0; i < strLen; i++) {
+            answer[i] = Integer.parseInt(strArr[strLen - i - 1]);
         }
         
         return answer;
