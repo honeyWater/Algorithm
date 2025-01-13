@@ -1,13 +1,13 @@
+import java.util.*;
+
 class Solution {
     public int[] solution(long n) {
-        String str = String.valueOf(n);
-        String[] strArr = str.split("");
+        String s = String.valueOf(n);
+        int[] answer = new int[s.length()];
         
-        int strLen = str.length();
-        int[] answer = new int[strLen];
-        
-        for (int i = 0; i < strLen; i++) {
-            answer[i] = Integer.parseInt(strArr[strLen - i - 1]);
+        for(int i = 0; i < s.length(); i++){
+            answer[i] = (int)(n % 10);
+            n /= 10;
         }
         
         return answer;
