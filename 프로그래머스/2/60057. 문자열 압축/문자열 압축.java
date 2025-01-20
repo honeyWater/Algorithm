@@ -12,7 +12,7 @@ class Solution {
         int sLen = s.length();
         int answer = sLen;
 
-        for (int i = 1; i < sLen; i++) {
+        for (int i = 1; i <= sLen / 2 + 1; i++) {
             int compLen = compression(s, i, sLen);
             answer = Math.min(answer, compLen);
         }
