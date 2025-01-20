@@ -12,6 +12,7 @@ class Solution {
             sb.append(n % 3);
             n /= 3;
         }
+        
         String s = sb.toString();
         int len = s.length();
         
