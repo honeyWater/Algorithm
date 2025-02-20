@@ -1,38 +1,19 @@
 /*
-1. 모든 단어를 재귀를 통해 순서대로 리스트에 넣어 둔다.
-2. word에 해당하는 단어의 순서를 찾아 반환한다.
+1. 일단 모든 경우의 수는 5 + 25 + 125 + 625 + 3125 = 3905
+    -> 자릿수에 따른 경우의 수
+2. 여기서 각 알파벳으로 시작할 수 있는 단어는 각각 781개
+    ex. a로 시작하는 단어는 781개
+3. 그러므로 자릿수에 따라 781 / 156 / 31 / 6 / 1 이므로, 
+주어진 word를 한글자씩 쪼개서 자릿수 별로 answer에 더해주면 됨
 */
-import java.util.*;
-
 class Solution {
-    static List<String> wordList;
-    static String[] alpha = {"A", "E", "I", "O", "U"};
-    
     public int solution(String word) {
-        wordList = new ArrayList<>();
         int answer = 0;
+        int per = 3905;
         
-        // 완전탐색 시작
-        recursion("", 0);
-        
-        // word의 순서 찾기
-        for (int i = 0; i < wordList.size(); i++) {
-            if (wordList.get(i).equals(word)) {
-                answer = i;
-                break;
-            }
-        }
+        for(String s : word.split(""))
+            answer += "AEIOU".indexOf(s) * (per /= 5) + 1;
         
         return answer;
-    }
-    
-    static void recursion(String str, int len) {
-        wordList.add(str);
-        
-        if (len == 5) return;
-        
-        for (int i = 0; i < alpha.length; i++) {
-            recursion(str + alpha[i], len + 1);
-        }
     }
 }
