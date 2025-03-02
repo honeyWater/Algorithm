@@ -1,7 +1,7 @@
 import java.util.*;
 
 class Solution {
-    public List<Integer> solution(int[] answers) {
+    public int[] solution(int[] answers) {
         int[] num1 = {1, 2, 3, 4, 5};
         int[] num2 = {2, 1, 2, 3, 2, 4, 2, 5};
         int[] num3 = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
@@ -27,8 +27,7 @@ class Solution {
                 answer.add(i + 1);
             }
         }
-        if (answer.size() > 1) Collections.sort(answer);
         
-        return answer;
+        return answer.stream().mapToInt(i->i.intValue()).toArray();
     }
 }
