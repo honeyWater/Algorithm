@@ -10,8 +10,7 @@ class Solution {
 
         for(int y = 3; y < area; y++){  // x, y 둘 다 최소 3
             int x = area / y;
-
-            // i로 나누어떨어지고 j가 3보다는 크다면
+            
             if(area % y == 0 && x >= y){
                 int center = (x - 2) * (y - 2);
 
